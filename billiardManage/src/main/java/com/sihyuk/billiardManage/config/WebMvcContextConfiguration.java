@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration // 나 설정파일이에요
 @EnableWebMvc // 기본설정은 여기에해주세요
-@ComponentScan(basePackages = {"kr.or.connect.billiardManage.controller"})
+@ComponentScan(basePackages = {"com.sihyuk.billiardManage.controller"})
 //controller 읽어와서 사용해요 
 public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
     @Override

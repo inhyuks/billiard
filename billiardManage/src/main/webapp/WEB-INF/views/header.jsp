@@ -35,7 +35,7 @@
     style="background-color:gray;
     ">
     <div class="col-auto mr-auto">
-    	<a class="navbar-brand js-scroll-trigger" href="/index.jsp">home</a>
+    	<a class="navbar-brand js-scroll-trigger" href="/home">home</a>
     </div>
    	<div class="col-auto">
 		<span>
