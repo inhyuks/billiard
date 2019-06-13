@@ -40,7 +40,7 @@
    	<div class="col-auto">
 		<span>
 				<input type="button" class="btn btn-primary btn-sm" value="로그인" onClick="location.href='/login/login.jsp'">
-				<input type="button" class="btn btn-primary btn-sm" value="회원가입" onClick="location.href='/login/regist.jsp'">
+				<input type="button" class="btn btn-primary btn-sm" value="회원가입" onClick="location.href='/regist'">
 		</span>
  
 	</div>

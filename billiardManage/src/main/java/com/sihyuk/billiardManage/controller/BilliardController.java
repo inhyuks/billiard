@@ -11,4 +11,9 @@ public class BilliardController {
 	public String initMain() {
 		return "index";
 	}
+	
+	@GetMapping(path = "/regist")
+	public String registPage() {
+		return "regist";
+	}
 }
