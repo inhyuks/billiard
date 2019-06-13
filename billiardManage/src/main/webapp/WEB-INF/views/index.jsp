@@ -9,16 +9,7 @@
 <div class="container">
 	<!-- Header -->
 	<header class="masthead">
-		<%--   <jsp:include page="header.jsp"/>  헤더--%>
-		<style>
-#div1 {
-	margin-left: 20px;
-	margin-top: 90px;
-}
-</style>
-		<!-- Bootstrap core CSS -->
-		<link href="<%=cp%>/resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css"
-			rel="stylesheet">
+		   <jsp:include page="header.jsp"/>
 
 		<div class="container d-flex h-100 alig
       -items-center">
