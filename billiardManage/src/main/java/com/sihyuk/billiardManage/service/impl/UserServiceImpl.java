@@ -14,8 +14,11 @@ public class UserServiceImpl implements UserService{
 	UserDao userDao;
 	
 	@Override
-	public long postUser(User user) {
-		return userDao.postUser(user);
+	public User postUser(User user) {
+		long no = userDao.postUser(user);
+		user.setNo(no);
+
+		return user;
 	}
 
 }
