@@ -1,6 +1,7 @@
 package com.sihyuk.billiardManage.dto;
 
 public class User {
+	private Long no;
 	private String id;
 	private String pw;
 	private String name;
@@ -8,6 +9,13 @@ public class User {
 	private String nTel;
 	private int avg;
 	private int permit;
+	
+	public Long getNo() {
+		return no;
+	}
+	public void setNo(Long no) {
+		this.no = no;
+	}
 	public String getId() {
 		return id;
 	}
@@ -52,7 +60,8 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", pw=" + pw + ", name=" + name + ", nickname=" + nickname + ", nTel=" + nTel
-				+ ", avg=" + avg + ", permit=" + permit + "]";
+		return "User [no=" + no + ", id=" + id + ", pw=" + pw + ", name=" + name + ", nickname=" + nickname + ", nTel="
+				+ nTel + ", avg=" + avg + ", permit=" + permit + "]";
 	}
+
 }
