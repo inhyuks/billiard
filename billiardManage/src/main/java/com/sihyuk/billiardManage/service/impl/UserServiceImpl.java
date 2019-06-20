@@ -2,6 +2,7 @@ package com.sihyuk.billiardManage.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sihyuk.billiardManage.dao.UserDao;
 import com.sihyuk.billiardManage.dto.User;
@@ -14,11 +15,10 @@ public class UserServiceImpl implements UserService{
 	UserDao userDao;
 	
 	@Override
-	public User postUser(User user) {
-		long no = userDao.postUser(user);
-		user.setNo(no);
-
-		return user;
+	@Transactional(readOnly=false) // 하나라도 트랜잭션실패하면 초기화
+	public String insertUser(User user) {
+		userDao.insertUser(user);
+		return user.getName();
 	}
 
 }
