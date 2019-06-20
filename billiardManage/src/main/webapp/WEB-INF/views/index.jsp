@@ -3,14 +3,13 @@
 <%
 	String cp = request.getContextPath();
 %>
+<script src = "https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <%--ContextPath 선언 --%>
 <!DOCTYPE html>
-
 <div class="container">
 	<!-- Header -->
 	<header class="masthead">
 		   <jsp:include page="header.jsp"/>
-
 		<div class="container d-flex h-100 alig
       -items-center">
 			<div class="mx-auto text-center">
