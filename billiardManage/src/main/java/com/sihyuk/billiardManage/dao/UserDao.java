@@ -2,16 +2,15 @@ package com.sihyuk.billiardManage.dao;
 
 
 import static com.sihyuk.billiardManage.dao.UserSql.*;
+
 import java.util.Collections;
 import java.util.Map;
 
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -22,10 +21,10 @@ import com.sihyuk.billiardManage.dto.User;
 @Repository
 public class UserDao {
 	private NamedParameterJdbcTemplate jdbc;
-	private JdbcTemplate jdbcT;
 	private SimpleJdbcInsert insertAction;
 	private RowMapper<User> rowMapper = BeanPropertyRowMapper.newInstance(User.class);
     public UserDao(DataSource dataSource) {
+    	this.jdbc = new NamedParameterJdbcTemplate(dataSource);
         this.insertAction = new SimpleJdbcInsert(dataSource)
             .withTableName("member")
             .usingGeneratedKeyColumns("no");
@@ -42,8 +41,8 @@ public class UserDao {
 	}
 
 	public int overlapChk(User user) {
-		String id = user.getId();
-		int count = jdbcT.queryForObject("select count(*) from member where id = ?", Integer.class, id);
+		String id = "1111";
+		int count = jdbc.queryForObject("select count(*) from member", Collections.emptyMap(), Integer.class);
 		return count;
 /*			try {
 				
