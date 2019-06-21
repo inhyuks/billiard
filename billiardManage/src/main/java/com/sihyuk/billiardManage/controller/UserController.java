@@ -1,5 +1,8 @@
 package com.sihyuk.billiardManage.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +32,14 @@ public class UserController {
 	public String regist(@ModelAttribute User user) {
 		String userName = userService.insertUser(user);
 		return userName;
+	}
+	
+	@ResponseBody
+	@PostMapping(path = "/overlapChk")
+	public Map<String,Integer> overlapChk(@ModelAttribute User user) {
+		int chk = userService.overlapChkById(user);
+		Map<String,Integer> map = new HashMap<>();
+		map.put("chk", chk);
+		return map;
 	}
 }

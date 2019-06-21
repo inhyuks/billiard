@@ -21,4 +21,9 @@ public class UserServiceImpl implements UserService{
 		return user.getName();
 	}
 
+	@Override
+	public int overlapChkById(User user) {
+		return userDao.overlapChk(user);
+	}
+
 }

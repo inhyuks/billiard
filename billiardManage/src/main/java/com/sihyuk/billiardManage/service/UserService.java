@@ -4,4 +4,6 @@ import com.sihyuk.billiardManage.dto.User;
 
 public interface UserService {
 	public String insertUser(User user); //회원가입
+	
+	public int overlapChkById(User user);
 }
