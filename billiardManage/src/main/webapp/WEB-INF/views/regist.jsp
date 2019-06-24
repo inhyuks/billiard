@@ -9,8 +9,6 @@
 <jsp:include page="header.jsp" />
 </head>
 <body>
-
-
 	<div class="container" align="center">
 		<div class="col-lg-4"></div>
 		<div class="col-lg-4">
@@ -28,7 +26,7 @@
 				</div>
 				<div class="form-group">
 					<input type="password" class="form-control" placeholder="비밀번호확인"
-						id="pwdchk"> <label id="label">(*필수 항목)</label>
+						id="pwchk" name="pwchk" onchange="pwchk()"> <label id="pwlabel">(*필수 항목)</label>
 				</div>
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="이름" id="name"
@@ -38,8 +36,8 @@
 					<input type="text" class="form-control"
 						placeholder="닉네임(다른사용자에게 비공개)" id="nickname" name="nickname"
 						maxlength="20">
-					<button type="button" id="nickNameOverlapChk" class="btn btn-primary btn-sm"
-						style="width: 100px; height: 28px;">중복확인</button>
+					<button type="button" id="nickNameOverlapChk"
+						class="btn btn-primary btn-sm" style="width: 100px; height: 28px;">중복확인</button>
 				</div>
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="핸드폰번호"
@@ -66,13 +64,32 @@
 	<script
 		src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 	<script>
+	
+	function pwchk() { // 패스워드 일치확인
+		if ($("#pw").val().length < 4
+				|| $("#pw").val().length > 16) {
+			alert("비밀번호는 4~16자리의 수만 가능합니다.");
+			$("#pw").val("");
+			$("#pwchk").val("");
+			return false;
+		}
+		pw1 = $("#pw").val();
+		pw2 = $("#pwchk").val();
+		if (pw1 == pw2) {
+			$("#pwlabel").text("확인");
+		} else {
+			$("#pwlabel").text("불일치");
+			$("#pw").val("");
+			$("#pwchk").val("");
+		}
+	}
+	
 		$(document).ready(function() {
-
 			$("#idOverlapChk").click(function() {//아이디 유효성 검사
 				var json = {
 					id : $("#id").val(),
 				};
-				if(json.id.length < 4){
+				if (json.id.length < 4) {
 					alert("아이디는 4자리이상 입니다.");
 					return;
 				}
@@ -81,38 +98,36 @@
 					url : "overlapChk",
 					data : json,
 					success : function(data) {
-						if(data.chk==0){
+						if (data.chk == 0) {
 							alert("사용하실수 있는 아이디 입니다.");
 							$('#id').prop('readonly', true);
-						}
-						else
+						} else
 							alert("중복된 아이디입니다.");
 					},
 				});
 			});
-			
-				$("#nickNameOverlapChk").click(function() {//닉네임 유효성 검사
-					var json = {
-						nickname : $("#nickname").val(),
-					};
-					if(json.nickname.length < 4){
-						alert("닉네임은 4자리이상 입니다.");
-						return;
-					}
-					$.ajax({
-						type : "post",
-						url : "overlapChk",
-						data : json,
-						success : function(data) {
-							if(data.chk==0){
-								alert("사용하실수 있는 닉네임 입니다.");
-								$('#nickname').prop('readonly', true);
-							}
-							else
-								alert("중복된 닉네임 입니다.");
-						},
-					});
+
+			$("#nickNameOverlapChk").click(function() {//닉네임 유효성 검사
+				var json = {
+					nickname : $("#nickname").val(),
+				};
+				if (json.nickname.length < 4) {
+					alert("닉네임은 4자리이상 입니다.");
+					return;
+				}
+				$.ajax({
+					type : "post",
+					url : "overlapChk",
+					data : json,
+					success : function(data) {
+						if (data.chk == 0) {
+							alert("사용하실수 있는 닉네임 입니다.");
+							$('#nickname').prop('readonly', true);
+						} else
+							alert("중복된 닉네임 입니다.");
+					},
 				});
+			});
 
 			$("#regist_bt").click(function() { // 회원 가입 처리
 				var json = {
@@ -130,7 +145,8 @@
 						$("#" + str).focus();
 						return;
 					}
-				};
+				}
+				;
 				$.ajax({
 					type : "post",
 					url : "regist",
