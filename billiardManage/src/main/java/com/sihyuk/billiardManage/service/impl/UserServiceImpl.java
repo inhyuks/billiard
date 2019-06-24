@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public int overlapChkById(User user) {
+	public int overlapChkByIdOrNickname(User user) {
 		return userDao.overlapChk(user);
 	}
 

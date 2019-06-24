@@ -37,7 +37,7 @@ public class UserController {
 	@ResponseBody
 	@PostMapping(path = "/overlapChk")
 	public Map<String,Integer> overlapChk(@ModelAttribute User user) {
-		int chk = userService.overlapChkById(user);
+		int chk = userService.overlapChkByIdOrNickname(user);
 		Map<String,Integer> map = new HashMap<>();
 		map.put("chk", chk);
 		return map;
