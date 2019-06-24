@@ -64,7 +64,8 @@
 	<script
 		src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 	<script>
-	
+	var overLapId = "false";
+	var overLapNickname = "false";
 	function pwchk() { // 패스워드 일치확인
 		if ($("#pw").val().length < 4
 				|| $("#pw").val().length > 16) {
@@ -101,6 +102,7 @@
 						if (data.chk == 0) {
 							alert("사용하실수 있는 아이디 입니다.");
 							$('#id').prop('readonly', true);
+							overLapId = "true";
 						} else
 							alert("중복된 아이디입니다.");
 					},
@@ -123,6 +125,7 @@
 						if (data.chk == 0) {
 							alert("사용하실수 있는 닉네임 입니다.");
 							$('#nickname').prop('readonly', true);
+							overLapNickname = "true";
 						} else
 							alert("중복된 닉네임 입니다.");
 					},
@@ -139,14 +142,22 @@
 					avg : $("#avg").val()
 				};
 
-				for ( var str in json) {
+				for ( var str in json) { // 입력하지 않은 값이 있는경우
 					if (json[str].length == 0) {
 						alert($("#" + str).attr("placeholder") + "를 입력해주세요.");
 						$("#" + str).focus();
 						return;
 					}
 				}
-				;
+				if(overLapId=="false"){
+						alert("ID중복체크를 해주세요.");
+						return;
+				}
+				if(overLapNickname=="false"){
+					alert("닉네임 중복체크를 해주세요.");
+					return;
+			}
+				
 				$.ajax({
 					type : "post",
 					url : "regist",
