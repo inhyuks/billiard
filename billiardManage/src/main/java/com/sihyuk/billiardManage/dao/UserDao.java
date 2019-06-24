@@ -48,7 +48,6 @@ public class UserDao {
 		params.put("id", id);
 		params.put("nickname", nickName);
 		int count = jdbc.queryForObject(SELECT_USER_BY_ID_OR_NICKNAME, params, Integer.class);
-		System.out.println("id : "+id + "count : "+count);
 		return count;
 /*			try {
 				

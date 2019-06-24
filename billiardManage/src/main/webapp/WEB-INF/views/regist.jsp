@@ -38,7 +38,7 @@
 					<input type="text" class="form-control"
 						placeholder="닉네임(다른사용자에게 비공개)" id="nickname" name="nickname"
 						maxlength="20">
-					<button type="button" class="btn btn-primary btn-sm"
+					<button type="button" id="nickNameOverlapChk" class="btn btn-primary btn-sm"
 						style="width: 100px; height: 28px;">중복확인</button>
 				</div>
 				<div class="form-group">
@@ -73,7 +73,7 @@
 					id : $("#id").val(),
 				};
 				if(json.id.length < 4){
-					alert(json.id+"아이디는 4자리이상 입니다.");
+					alert("아이디는 4자리이상 입니다.");
 					return;
 				}
 				$.ajax({
@@ -88,6 +88,27 @@
 					},
 				});
 			});
+			
+				$("#nickNameOverlapChk").click(function() {//닉네임 유효성 검사
+					var json = {
+						nickname : $("#nickname").val(),
+					};
+					if(json.nickname.length < 4){
+						alert("닉네임은 4자리이상 입니다.");
+						return;
+					}
+					$.ajax({
+						type : "post",
+						url : "overlapChk",
+						data : json,
+						success : function(data) {
+							if(data.chk==0)
+								alert("사용하실수 있는 닉네임 입니다.");
+							else
+								alert("중복된 닉네임 입니다.");
+						},
+					});
+				});
 
 			$("#regist_bt").click(function() { // 회원 가입 처리
 				var json = {
