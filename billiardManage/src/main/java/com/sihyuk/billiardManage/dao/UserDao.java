@@ -4,6 +4,7 @@ package com.sihyuk.billiardManage.dao;
 import static com.sihyuk.billiardManage.dao.UserSql.*;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.sql.DataSource;
@@ -41,8 +42,13 @@ public class UserDao {
 	}
 
 	public int overlapChk(User user) {
-		String id = "1111";
-		int count = jdbc.queryForObject("select count(*) from member", Collections.emptyMap(), Integer.class);
+		String id = user.getId();
+		String nickName = user.getNickname();
+		Map<String, String> params = new HashMap<>();
+		params.put("id", id);
+		params.put("nickname", nickName);
+		int count = jdbc.queryForObject(SELECT_USER_BY_ID, params, Integer.class);
+		System.out.println("id : "+id + "count : "+count);
 		return count;
 /*			try {
 				
