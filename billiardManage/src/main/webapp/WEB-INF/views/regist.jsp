@@ -81,8 +81,10 @@
 					url : "overlapChk",
 					data : json,
 					success : function(data) {
-						if(data.chk==0)
+						if(data.chk==0){
 							alert("사용하실수 있는 아이디 입니다.");
+							$('#id').prop('readonly', true);
+						}
 						else
 							alert("중복된 아이디입니다.");
 					},
@@ -102,8 +104,10 @@
 						url : "overlapChk",
 						data : json,
 						success : function(data) {
-							if(data.chk==0)
+							if(data.chk==0){
 								alert("사용하실수 있는 닉네임 입니다.");
+								$('#nickname').prop('readonly', true);
+							}
 							else
 								alert("중복된 닉네임 입니다.");
 						},
