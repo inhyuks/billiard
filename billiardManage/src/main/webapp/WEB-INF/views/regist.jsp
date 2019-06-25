@@ -160,12 +160,15 @@
 				
 				$.ajax({
 					type : "post",
-					url : "regist",
-					data : json,
+					url : "user",
+					data : JSON.stringify(json),headers : { //json타입으로 보내되 json객체를 문자열화시킴
+					    "Accept" : "application/json",
+					    "Content-Type" : "application/json"
+					},
 					success : function(data) {
 						alert(data + "님 회원가입되었습니다.");
 						location.replace = "/home";
-					},
+					}
 				});
 			});
 		});

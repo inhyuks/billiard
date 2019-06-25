@@ -21,19 +21,6 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-	@PostMapping(path = "/userpost")
-	public String write(@ModelAttribute User user) {
-		userService.insertUser(user);
-		return "redirect:home";
-	}
-	
-	@ResponseBody
-	@PostMapping(path = "/regist")
-	public String regist(@ModelAttribute User user) {
-		String userName = userService.insertUser(user);
-		return userName;
-	}
-	
 	@ResponseBody
 	@PostMapping(path = "/overlapChk")
 	public Map<String,Integer> overlapChk(@ModelAttribute User user) {
