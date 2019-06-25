@@ -22,7 +22,12 @@ public class BilliardController {
 		return "index";
 	}
 	
-	@GetMapping(path = "/regist")
+	@GetMapping(path = "/login") //로그인페이지이동
+	public String loginPage() {
+		return "userLogin";
+	}
+	
+	@GetMapping(path = "/regist") //회원가입페이지이동
 	public String registPage() {
 		return "regist";
 	}
