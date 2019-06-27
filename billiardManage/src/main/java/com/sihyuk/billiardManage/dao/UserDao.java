@@ -1,6 +1,5 @@
 package com.sihyuk.billiardManage.dao;
 
-
 import static com.sihyuk.billiardManage.dao.UserSql.*;
 
 import java.util.Collections;
@@ -9,6 +8,7 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -24,21 +24,26 @@ public class UserDao {
 	private NamedParameterJdbcTemplate jdbc;
 	private SimpleJdbcInsert insertAction;
 	private RowMapper<User> rowMapper = BeanPropertyRowMapper.newInstance(User.class);
-    public UserDao(DataSource dataSource) {
-    	this.jdbc = new NamedParameterJdbcTemplate(dataSource);
-        this.insertAction = new SimpleJdbcInsert(dataSource)
-            .withTableName("member")
-            .usingGeneratedKeyColumns("no");
-    }
-    
+
+	public UserDao(DataSource dataSource) {
+		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
+		this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("member").usingGeneratedKeyColumns("no");
+	}
+
 	public long insertUser(User user) {
 		SqlParameterSource params = new BeanPropertySqlParameterSource(user);
 		return insertAction.executeAndReturnKey(params).longValue();
 	}
-	
-	public User getUserByNo(long no) {
-		Map<String, ? > params = Collections.singletonMap("no",no);
-		return jdbc.queryForObject(SELECT_USER_BY_NO, params, rowMapper);
+
+	public User getUserById(String id,String pw) {
+		try {
+			Map<String, ?> params = Collections.singletonMap("id", id);
+			User user = jdbc.queryForObject(SELECT_USER_BY_ID, params, rowMapper);
+			return user;
+		} catch (EmptyResultDataAccessException e) {
+			// select 시 조건에 맞는 결과가없으면
+			return null;
+		}
 	}
 
 	public int overlapChk(User user) {
@@ -49,17 +54,5 @@ public class UserDao {
 		params.put("nickname", nickName);
 		int count = jdbc.queryForObject(SELECT_USER_BY_ID_OR_NICKNAME, params, Integer.class);
 		return count;
-/*			try {
-				
-				System.out.println(user.getId());
-				SqlParameterSource params = new BeanPropertySqlParameterSource(user);
-				Integer a =jdbc.queryForObject(SELECT_USER_BY_ID, params, Integer.class);
-				System.out.println("data : "+ a);
-				return a;
-			} catch (Exception e) {
-				e.printStackTrace();
-				return 0;
-			}*/
-			
 	}
 }

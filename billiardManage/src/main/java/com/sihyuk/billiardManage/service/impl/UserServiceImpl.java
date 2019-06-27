@@ -25,5 +25,18 @@ public class UserServiceImpl implements UserService{
 	public int overlapChkByIdOrNickname(User user) {
 		return userDao.overlapChk(user);
 	}
+	
+	public int getUserById(String id, String pw) {
+		User user = userDao.getUserById(id,pw);
+		if(user == null) { // 동일한 id가없으면 -1 을 리턴
+			return -1;
+		}
+		else if(user.getPw().equals(pw)) { // 동일한 id의 비밀번호와 일치하다면 1을 리턴
+			return 1; 
+		}
+		else { // id 가있으나 pw가 다르다면 0을 리턴
+			return 0;
+		}
+	}
 
 }

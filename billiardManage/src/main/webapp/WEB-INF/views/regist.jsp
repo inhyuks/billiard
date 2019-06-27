@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <!DOCTYPE html >
 <html>
 <head>
@@ -88,7 +88,7 @@
 		$(document).ready(function() {
 			$("#idOverlapChk").click(function() {//아이디 유효성 검사
 				var json = {
-					id : $("#id").val(),
+					id : $("#id").val()
 				};
 				if (json.id.length < 4) {
 					alert("아이디는 4자리이상 입니다.");
@@ -111,7 +111,7 @@
 
 			$("#nickNameOverlapChk").click(function() {//닉네임 유효성 검사
 				var json = {
-					nickname : $("#nickname").val(),
+					nickname : $("#nickname").val()
 				};
 				if (json.nickname.length < 4) {
 					alert("닉네임은 4자리이상 입니다.");
