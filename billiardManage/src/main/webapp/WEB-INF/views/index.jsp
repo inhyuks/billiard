@@ -3,7 +3,6 @@
 <%
 	String cp = request.getContextPath();
 %>
-<script src = "https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <%--ContextPath 선언 --%>
 <!DOCTYPE html>
 <div class="container">
@@ -18,21 +17,8 @@
 				<h1 class="mx-auto my-0 text-uppercase">대대전용 당구장 사이트</h1>
 				<br>
 				<br>
-				<br> <a href="#" class="btn btn-primary js-scroll-trigger">당구장
+				<br> <a href="/billiardList" class="btn btn-primary js-scroll-trigger">당구장
 					찾기</a>
-				<%
-					if (session.getAttribute("id") != null) {
-						if (session.getAttribute("permit") == null) {
-				%>
-				<%
-					} else {
-				%>
-				<a href="#" class="btn btn-primary js-scroll-trigger">내 당구장 관리</a>
-				<%
-					}
-					}
-				%>
-
 			</div>
 
 		</div>
