@@ -38,11 +38,15 @@
     	<a class="navbar-brand js-scroll-trigger" href="/home">home</a>
     </div>
    	<div class="col-auto">
+     	<%if (session.getAttribute("loginUser") == null) {%>
 		<span>
 				<input type="button" class="btn btn-primary btn-sm" value="로그인" onClick="location.href='/login'">
 				<input type="button" class="btn btn-primary btn-sm" value="회원가입" onClick="location.href='/regist'">
+		<%} else {%>
+				<label><%out.print(session.getAttribute("loginUser")+"님"); %></label>
+				<input type="button" class="btn btn-primary btn-sm" value="로그아웃" onClick="location.href='#'">
 		</span>
- 
+		<%} %>   
 	</div>
       <div class="col-auto">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

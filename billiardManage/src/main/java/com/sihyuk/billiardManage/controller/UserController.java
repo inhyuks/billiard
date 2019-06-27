@@ -37,6 +37,9 @@ public class UserController {
 	@PostMapping(path = "/login")
 	public int login(@ModelAttribute User user,HttpSession session) {
 		int chk = userService.getUserById(user.getId(),user.getPw());
+		if (chk == 1) {
+			session.setAttribute("loginUser", user.getId());
+		}
 		return chk;
 
 	}
