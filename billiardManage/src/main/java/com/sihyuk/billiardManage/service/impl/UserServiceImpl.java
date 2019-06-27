@@ -19,12 +19,12 @@ public class UserServiceImpl implements UserService{
 	public String insertUser(User user) {
 		userDao.insertUser(user);
 		return user.getName();
-	}
+	} //유저등록
 
 	@Override
 	public int overlapChkByIdOrNickname(User user) {
 		return userDao.overlapChk(user);
-	}
+	} // 중복확인
 	
 	public int getUserById(String id, String pw) {
 		User user = userDao.getUserById(id,pw);
@@ -37,6 +37,6 @@ public class UserServiceImpl implements UserService{
 		else { // id 가있으나 pw가 다르다면 0을 리턴
 			return 0;
 		}
-	}
+	} // id 를 이용한 유저검색
 
 }

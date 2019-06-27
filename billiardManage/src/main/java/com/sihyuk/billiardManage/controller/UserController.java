@@ -32,7 +32,7 @@ public class UserController {
 		Map<String,Integer> map = new HashMap<>();
 		map.put("chk", chk);
 		return map;
-	}
+	} // 중복확인 로직
 	
 	@ResponseBody
 	@PostMapping(path = "/login")
@@ -42,11 +42,11 @@ public class UserController {
 			session.setAttribute("loginUser", user.getId());
 		}
 		return chk;
-	}
+	}// 로그인 로직
 	
 	@GetMapping(path = "/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("loginUser");
 		return "redirect:/home";
-	}
+	} //로그아웃로직
 }

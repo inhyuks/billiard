@@ -43,6 +43,7 @@ public class BilliardController {
 		model.addAttribute("pageStartList",pageStartList);
 		model.addAttribute("count",count);
 		return "billiardList";
-		
 	}
+	
+	
 }

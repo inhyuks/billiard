@@ -33,7 +33,7 @@ public class UserDao {
 	public long insertUser(User user) {
 		SqlParameterSource params = new BeanPropertySqlParameterSource(user);
 		return insertAction.executeAndReturnKey(params).longValue();
-	}
+	} //유저 등록
 
 	public User getUserById(String id,String pw) {
 		try {
@@ -44,7 +44,7 @@ public class UserDao {
 			// select 시 조건에 맞는 결과가없으면
 			return null;
 		}
-	}
+	} // id 를 통해 유저 확인
 
 	public int overlapChk(User user) {
 		String id = user.getId();
@@ -54,5 +54,5 @@ public class UserDao {
 		params.put("nickname", nickName);
 		int count = jdbc.queryForObject(SELECT_USER_BY_ID_OR_NICKNAME, params, Integer.class);
 		return count;
-	}
+	} // 중복확인
 }
