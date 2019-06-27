@@ -12,7 +12,7 @@ import com.sihyuk.billiardManage.dto.User;
 import com.sihyuk.billiardManage.service.UserService;
 
 @Controller
-public class BilliardController {
+public class MainController {
 
 	@Autowired
 	UserService userService;
