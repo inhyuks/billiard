@@ -83,9 +83,10 @@
 			$("#pw").val("");
 			$("#pwchk").val("");
 		}
-	}
+	} // 패스워드 일치확인
 	
 		$(document).ready(function() {
+			
 			$("#idOverlapChk").click(function() {//아이디 유효성 검사
 				var json = {
 					id : $("#id").val()
@@ -107,7 +108,7 @@
 							alert("중복된 아이디입니다.");
 					},
 				});
-			});
+			}); // 아이디 중복확인 버튼 이벤트
 
 			$("#nickNameOverlapChk").click(function() {//닉네임 유효성 검사
 				var json = {
@@ -130,7 +131,7 @@
 							alert("중복된 닉네임 입니다.");
 					},
 				});
-			});
+			}); // 닉네임 중복확인 버튼 이벤트
 
 			$("#regist_bt").click(function() { // 회원 가입 처리
 				var json = {
@@ -170,8 +171,8 @@
 						location.replace = "/home";
 					}
 				});
-			});
-		});
+			}); // 회원가입 버튼 이벤트
+		});// document ready
 	</script>
 </body>
 </html>

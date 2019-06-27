@@ -80,9 +80,9 @@
 							location.replace = "/login";
 						} 
 					}
-				}); 
-			});
-		});
+				}); // login_bt ajax
+			}); // login_bt 이벤트
+		}); // document ready
 	</script>
 </body>
 </html>
