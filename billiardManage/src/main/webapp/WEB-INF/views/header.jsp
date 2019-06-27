@@ -44,7 +44,7 @@
 				<input type="button" class="btn btn-primary btn-sm" value="회원가입" onClick="location.href='/regist'">
 		<%} else {%>
 				<label><%out.print(session.getAttribute("loginUser")+"님"); %></label>
-				<input type="button" class="btn btn-primary btn-sm" value="로그아웃" onClick="location.href='#'">
+				<input type="button" class="btn btn-primary btn-sm" value="로그아웃" onClick="location.href='/logout'">
 		</span>
 		<%} %>   
 	</div>
