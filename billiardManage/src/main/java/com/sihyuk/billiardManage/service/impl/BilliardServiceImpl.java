@@ -22,11 +22,25 @@ public class BilliardServiceImpl implements BilliardService{
 	public List<Billiard> getBilliards(Integer start) {
 		List<Billiard> list = billiardDao.selectAll(start,BilliardService.LIMIT);
 		return list;
-	}// 목록가져오기
+	}// 당구장 목록가져오기
 
 	@Override
 	@Transactional(readOnly = false)
 	public int getBilliardCount() {
 		return billiardDao.selectBilliardCount();
-	}// 방명록 전체개수
+	}// 당구장 전체개수
+	
+	@Override
+	//내부적으로 ReadOnly라는 형태로 커넥션적용
+	@Transactional
+	public List<Billiard> getBilliardsByName(Integer start, String bname) {
+		List<Billiard> list = billiardDao.selectBilliardByName(start,BilliardService.LIMIT,bname);
+		return list;
+	}// 이름에따른 당구장 목록가져오기
+
+	@Override
+	@Transactional(readOnly = false)
+	public int getBilliardCountByName(String bname) {
+		return billiardDao.selectBilliardCountByName(bname);
+	}// 이름에따른 당구장 전체개수
 }
